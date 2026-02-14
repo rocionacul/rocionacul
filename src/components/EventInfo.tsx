@@ -1,6 +1,5 @@
 import React from 'react';
 import './EventInfo.css';
-import jumpParkBg from '../assets/jummpark.png';
 
 export const EventInfo: React.FC = () => {
   return (
