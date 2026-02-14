@@ -1,0 +1,16 @@
+.app {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.footer {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-tertiary);
+  border-top: 1px solid var(--bg-secondary);
+}
+
+.footer p {
+  margin: 0;
+}

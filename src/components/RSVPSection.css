@@ -1,0 +1,29 @@
+.rsvp-section {
+  text-align: center;
+}
+
+.rsvp-content {
+  max-width: 56rem;
+  margin: 0 auto;
+}
+
+.rsvp-description {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.rsvp-hint {
+  color: var(--text-tertiary);
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .rsvp-description {
+    font-size: 1.125rem;
+  }
+}

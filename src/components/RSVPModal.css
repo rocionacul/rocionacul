@@ -1,0 +1,10 @@
+.modal-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.modal-subtitle {
+  color: var(--text-tertiary);
+  margin-bottom: 1.5rem;
+}
