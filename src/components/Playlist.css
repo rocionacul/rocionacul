@@ -104,13 +104,17 @@
     font-size: 1.25rem;
   }
 
-  .tumblr-posts-grid {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .tumblr-post-image {
+    height: 160px;
   }
 
-  .tumblr-post-image {
-    height: 240px;
+  .tumblr-post-caption {
+    padding: 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .tumblr-posts-grid {
+    gap: 0.75rem;
   }
 }
 
@@ -147,6 +151,12 @@
   gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto 2rem;
+}
+
+@media (max-width: 768px) {
+  .tumblr-posts-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
 }
 
 .tumblr-post-card {
