@@ -16,6 +16,18 @@ interface TumblrPost {
   title?: string;
 }
 
+interface TumblrResponse {
+  response: {
+    posts: TumblrPost[];
+  };
+}
+
+declare global {
+  interface Window {
+    [key: string]: unknown;
+  }
+}
+
 export const Playlist: React.FC = () => {
   const [posts, setPosts] = useState<TumblrPost[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,18 +45,34 @@ export const Playlist: React.FC = () => {
       }
 
       try {
-        const response = await fetch(
-          `https://api.tumblr.com/v2/blog/rocionacul.tumblr.com/posts?api_key=${apiKey}&limit=6`
-        );
+        // Crear un callback único
+        const callbackName = 'tumblrCallback' + Date.now();
         
-        if (!response.ok) throw new Error('Error fetching posts');
+        // Crear el script tag para JSONP
+        const script = document.createElement('script');
+        script.src = `https://api.tumblr.com/v2/blog/rocionacul.tumblr.com/posts?api_key=${apiKey}&limit=6&callback=${callbackName}`;
         
-        const data = await response.json();
-        setPosts(data.response.posts || []);
+        // Crear el callback global
+        window[callbackName] = (data: TumblrResponse) => {
+          setPosts(data.response.posts || []);
+          setLoading(false);
+          document.body.removeChild(script);
+          delete window[callbackName];
+        };
+
+        // Manejar errores
+        script.onerror = () => {
+          console.error('Error loading Tumblr posts');
+          setError(true);
+          setLoading(false);
+          document.body.removeChild(script);
+          delete window[callbackName];
+        };
+
+        document.body.appendChild(script);
       } catch (err) {
         console.error('Error loading Tumblr posts:', err);
         setError(true);
-      } finally {
         setLoading(false);
       }
     };
@@ -55,10 +83,10 @@ export const Playlist: React.FC = () => {
   return (
     <section id="playlist" className="playlist section">
       <div className="container">
-        <h2 className="section-title text-gradient-purple">Más Inspo</h2>
+        <h2 className="section-title text-gradient-purple">Mas Inspo</h2>
         
         <p className="playlist-intro">
-          Escuchá la playlist del evento 🎵
+          Escucha la playlist del evento 🎵
         </p>
 
         <div className="playlist-buttons">
@@ -89,7 +117,7 @@ export const Playlist: React.FC = () => {
         </div>
 
         <div className="tumblr-section">
-          <h3 className="tumblr-title">Más vibes del evento</h3>
+          <h3 className="tumblr-title">Mas vibes del evento</h3>
           
           {loading && (
             <div className="tumblr-loading">
@@ -99,7 +127,7 @@ export const Playlist: React.FC = () => {
 
           {error && (
             <div className="tumblr-error">
-              <p>No se pudieron cargar los posts. <a href="https://rocionacul.tumblr.com" target="_blank" rel="noopener noreferrer">Ver en Tumblr</a></p>
+              <p className="error-message">No se pudieron cargar los posts. Intenta recargar la pagina.</p>
             </div>
           )}
 
@@ -136,7 +164,7 @@ export const Playlist: React.FC = () => {
 
           <div className="tumblr-link">
             <a href="https://rocionacul.tumblr.com" target="_blank" rel="noopener noreferrer">
-              Ver más en Tumblr →
+              Ver mas en Tumblr →
             </a>
           </div>
         </div>

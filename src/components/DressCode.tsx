@@ -110,7 +110,7 @@ export const DressCode: React.FC = () => {
           <p>¿No te decidís? Vestite con algo que me guste o represente✨</p>
         </div>
 
-        <button onClick={scrollToPlaylist} className="dress-code-scroll animate-bounce" aria-label="Ver más inspiración">
+        <button onClick={scrollToPlaylist} className="dress-code-scroll animate-bounce" aria-label="Ver mas inspiracion">
           <span className="scroll-text">+ inspo</span>
           <svg className="scroll-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />

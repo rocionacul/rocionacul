@@ -39,7 +39,7 @@ export const DeclineModal: React.FC<DeclineModalProps> = ({ isOpen, onClose }) =
     if (response.success) {
       setSubmitStatus({
         type: 'success',
-        message: response.message || '¡Gracias por avisar!',
+        message: response.message || 'Gracias por avisar!',
       });
       reset();
       setTimeout(() => {
@@ -49,7 +49,7 @@ export const DeclineModal: React.FC<DeclineModalProps> = ({ isOpen, onClose }) =
     } else {
       setSubmitStatus({
         type: 'error',
-        message: response.error || 'Algo salió mal. Intentá de nuevo.',
+        message: response.error || 'Algo salio mal. Intenta de nuevo.',
       });
     }
 
@@ -104,7 +104,7 @@ export const DeclineModal: React.FC<DeclineModalProps> = ({ isOpen, onClose }) =
                 Enviando...
               </>
             ) : (
-              'Confirmar que no asistiré'
+              'Confirmar que no asistire'
             )}
           </button>
         </form>

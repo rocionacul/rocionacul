@@ -21,22 +21,22 @@ export const Hero: React.FC = () => {
         </div>
 
         <h1 className="hero-title animate-slide-up">
-          <span className="text-gradient-purple">¡Estás Invitada!</span>
+          <span className="text-gradient-purple">¡Estas Invitada!</span>
           <span className="hero-subtitle-alt">o invitado, en su defecto</span>
 
         </h1>
         
         
         <p className="hero-subtitle">
-          Vení a celebrar mis 30 ✨
+        ✨ Veni a celebrar mis 30 ✨
         </p>
 
         <p className="hero-rsvp-notice">
-          ⚠️ Confirmá tu asistencia más abajo
+          ⚠️ Confirma tu asistencia mas abajo
         </p>
 
         <button onClick={scrollToInfo} className="hero-scroll animate-bounce" aria-label="Ver detalles del evento">
-          <span className="scroll-text">Scrolleá para ver más</span>
+          <span className="scroll-text">Scrollea para ver mas</span>
           <svg className="scroll-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>

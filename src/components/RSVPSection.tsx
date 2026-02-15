@@ -14,7 +14,7 @@ export const RSVPSection: React.FC = () => {
           <h2 className="section-title text-gradient-purple">¿Vas a venir?</h2>
           
           <p className="rsvp-description">
-            Confirmá tu asistencia para que te guarde un lugar.
+            Confirma tu asistencia para que te guarde un lugar.
           </p>
 
           <div className="rsvp-buttons">
@@ -27,7 +27,7 @@ export const RSVPSection: React.FC = () => {
             </button>
           </div>
 
-          <p className="rsvp-hint">Hacé click para confirmar</p>
+          <p className="rsvp-hint">Hace click para confirmar</p>
         </div>
       </section>
 

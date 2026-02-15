@@ -129,14 +129,14 @@ export const GuestList: React.FC = () => {
               <div className="guest-table">
                 <table>
                   <thead>
-                    <tr>
-                      <th>Ingresó</th>
-                      <th>Nombre</th>
-                      <th>Email</th>
-                      <th>Teléfono</th>
-                      <th>Invitados</th>
-                      <th>Fecha</th>
-                    </tr>
+                <tr>
+                  <th>Ingreso</th>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Telefono</th>
+                  <th>Invitados</th>
+                  <th>Fecha</th>
+                </tr>
                   </thead>
                   <tbody>
                     {attending.map((guest) => (
@@ -179,12 +179,12 @@ export const GuestList: React.FC = () => {
               <div className="guest-table declined-table">
                 <table>
                   <thead>
-                    <tr>
-                      <th>Nombre</th>
-                      <th>Email</th>
-                      <th>Teléfono</th>
-                      <th>Fecha</th>
-                    </tr>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Email</th>
+                  <th>Telefono</th>
+                  <th>Fecha</th>
+                </tr>
                   </thead>
                   <tbody>
                     {notAttending.map((guest) => (

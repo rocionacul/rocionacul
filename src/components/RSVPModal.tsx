@@ -68,8 +68,8 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
           </svg>
         </button>
 
-        <h2 className="modal-title text-gradient-purple">Confirmación</h2>
-        <p className="modal-subtitle">¡Gracias por venir!</p>
+        <h2 className="modal-title text-gradient-purple">Confirmacion</h2>
+        <p className="modal-subtitle">Gracias por venir!</p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
@@ -92,7 +92,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
               {...register('email', {
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: 'Email inválido',
+                  message: 'Email invalido',
                 },
               })}
               className="form-input"
@@ -102,7 +102,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="phone" className="form-label">Teléfono</label>
+            <label htmlFor="phone" className="form-label">Telefono</label>
             <input
               id="phone"
               type="tel"
@@ -122,8 +122,8 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
               max="10"
               {...register('number_of_guests', {
                 required: 'La cantidad de invitados es requerida',
-                min: { value: 1, message: 'Mínimo 1 invitado' },
-                max: { value: 10, message: 'Máximo 10 invitados' },
+                min: { value: 1, message: 'Minimo 1 invitado' },
+                max: { value: 10, message: 'Maximo 10 invitados' },
                 valueAsNumber: true,
               })}
               className="form-input"
