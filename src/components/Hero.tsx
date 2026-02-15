@@ -32,7 +32,7 @@ export const Hero: React.FC = () => {
         </p>
 
         <p className="hero-rsvp-notice">
-          ⚠️ Confirmá tu asistencia más abajo - Necesito orden
+          ⚠️ Confirmá tu asistencia más abajo
         </p>
 
         <button onClick={scrollToInfo} className="hero-scroll animate-bounce" aria-label="Ver detalles del evento">

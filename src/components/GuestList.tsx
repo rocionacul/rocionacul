@@ -66,7 +66,6 @@ export const GuestList: React.FC = () => {
     }
   };
 
-  const totalGuests = guests.reduce((sum, guest) => sum + guest.number_of_guests, 0);
   const attending = guests.filter(g => g.attending);
   const notAttending = guests.filter(g => !g.attending);
   const totalAttending = attending.reduce((sum, guest) => sum + guest.number_of_guests, 0);
