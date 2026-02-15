@@ -93,9 +93,9 @@ export const DressCode: React.FC = () => {
               <h3 className="dress-code-title">Twilight</h3>
               
               <ul className="dress-code-list">
-                <li>Vampiro chic: ropa oscura y elegante</li>
-                <li>Bordó, violetas oscuros, negros</li>
-                <li>Brillitos (sutiles)</li>
+              <li>Gris o plateado (como día nublado en Forks)</li>
+                <li>Brillitos sutiles como Edward al sol</li>
+                <li>Baseball core aprobado</li>
                 <li>No aceptamos Jacob Blacks</li>
               </ul>
 

@@ -50,11 +50,12 @@
   width: 150px;
   height: 150px;
   object-fit: contain;
-  filter: drop-shadow(0 0 20px rgba(17, 111, 136, 0.6));
+  filter: drop-shadow(0 0 20px rgba(168, 85, 247, 0.6));
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -66,6 +67,12 @@
   font-size: 4rem;
   font-weight: bold;
   margin-bottom: 1.5rem;
+  text-shadow:
+    0 0 2px rgba(168, 85, 247, 0.8),
+    0 0 20px rgba(168, 85, 247, 0.6),
+    0 0 10px rgba(192, 132, 252, 0.4),
+    0 2px 15px rgba(0, 0, 0, 0.8);
+  -webkit-font-smoothing: antialiased;
 }
 
 .hero-subtitle {
@@ -94,7 +101,7 @@
 .hero-rsvp-notice {
   font-size: 1.125rem;
   color: var(--text-primary);
-  background-color: rgba(17, 111, 136, 0.15);
+  background-color: rgba(168, 85, 247, 0.15);
   border: 2px solid var(--purple);
   border-radius: 1rem;
   padding: 1rem 2rem;
@@ -136,15 +143,15 @@
   .hero-title {
     font-size: 2.5rem;
   }
-  
+
   .hero-subtitle {
     font-size: 1.5rem;
   }
-  
+
   .hero-subtitle-alt {
     font-size: 0.875rem;
   }
-  
+
   .hero-tagline {
     font-size: 1rem;
   }

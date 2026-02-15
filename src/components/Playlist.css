@@ -150,7 +150,7 @@
   background-color: var(--purple-light);
   color: var(--bg-primary);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(17, 111, 136, 0.2);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.2);
 }
 
 .tumblr-posts-grid {
@@ -196,7 +196,7 @@
 .tumblr-post-card:hover {
   transform: translateY(-4px);
   border-color: var(--purple-light);
-  box-shadow: 0 8px 24px rgba(17, 111, 136, 0.2);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.2);
 }
 
 .tumblr-post-image {

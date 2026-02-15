@@ -137,7 +137,7 @@
 }
 
 .guest-table tbody tr:hover {
-  background-color: rgba(17, 111, 136, 0.05);
+  background-color: rgba(168, 85, 247, 0.05);
 }
 
 .guest-table tbody tr.attended-row {
@@ -216,7 +216,7 @@
 
 .attended-toggle:hover:not(:disabled) {
   border-color: var(--purple-light);
-  background-color: rgba(17, 111, 136, 0.1);
+  background-color: rgba(168, 85, 247, 0.1);
   transform: scale(1.1);
 }
 
