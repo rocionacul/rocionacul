@@ -26,8 +26,10 @@
   border: 2px solid var(--border-color);
   border-radius: 1rem;
   color: var(--text-secondary);
+  font-family: 'Twilight', serif;
   font-size: 1.125rem;
-  font-weight: 600;
+  font-weight: 300;
+  letter-spacing: 0.02em;
   cursor: pointer;
   transition: all 0.3s ease;
 }
