@@ -50,6 +50,9 @@ export const Playlist: React.FC = () => {
   const [posts, setPosts] = useState<TumblrPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [visiblePostsCount, setVisiblePostsCount] = useState(6); // Para mobile: empezar con 6 posts
 
   // Función para extraer URL de imagen del HTML
   const extractImageFromHTML = (html: string): string | null => {
@@ -124,7 +127,7 @@ export const Playlist: React.FC = () => {
         
         // Crear el script tag para JSONP
         const script = document.createElement('script');
-        script.src = `https://api.tumblr.com/v2/blog/rocionacul.tumblr.com/posts?api_key=${apiKey}&limit=20&callback=${callbackName}`;
+        script.src = `https://api.tumblr.com/v2/blog/rocionacul.tumblr.com/posts?api_key=${apiKey}&limit=50&callback=${callbackName}`;
         
         // Crear el callback global
         window[callbackName] = (data: TumblrResponse) => {
@@ -135,7 +138,7 @@ export const Playlist: React.FC = () => {
             return !!getPostImageUrl(post);
           });
 
-          setPosts(postsWithImages.slice(0, 6));
+          setPosts(postsWithImages.slice(0, 24)); // 24 posts = 4 slides × 6 posts
           setLoading(false);
           document.body.removeChild(script);
           delete window[callbackName];
@@ -160,6 +163,66 @@ export const Playlist: React.FC = () => {
 
     fetchTumblrPosts();
   }, []);
+
+  // Detectar si es mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Funciones de navegación del carrusel
+  const totalSlides = 6; // 6 slides con 4 posts cada una
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
+
+  const goToSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  // Función para cargar más posts en mobile
+  const loadMorePosts = () => {
+    setVisiblePostsCount(prev => Math.min(prev + 6, posts.length));
+  };
+
+  // Renderizar post card
+  const renderPostCard = (post: TumblrPost) => {
+    const imageUrl = getPostImageUrl(post);
+    const caption = post.caption || post.summary || post.body || '';
+    const cleanCaption = caption.replace(/<[^>]*>/g, '').trim();
+    const truncatedCaption = cleanCaption.substring(0, 80);
+
+    return (
+      <a 
+        key={post.id}
+        href={post.post_url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="tumblr-post-card"
+      >
+        {imageUrl && (
+          <div className="tumblr-post-image">
+            <img src={imageUrl} alt={truncatedCaption || 'Post'} loading="lazy" />
+          </div>
+        )}
+        {cleanCaption && truncatedCaption.length > 0 && (
+          <div className="tumblr-post-caption">
+            <p>{truncatedCaption}{cleanCaption.length > 80 ? '...' : ''}</p>
+          </div>
+        )}
+      </a>
+    );
+  };
 
   return (
     <section id="playlist" className="playlist section">
@@ -213,35 +276,113 @@ export const Playlist: React.FC = () => {
           )}
 
           {!loading && !error && posts.length > 0 && (
-            <div className="tumblr-posts-grid">
-              {posts.map((post) => {
-                const imageUrl = getPostImageUrl(post);
-                const caption = post.caption || post.summary || post.body || '';
-                const cleanCaption = caption.replace(/<[^>]*>/g, '').trim();
-                const truncatedCaption = cleanCaption.substring(0, 80);
+            <>
+              {!isMobile ? (
+                // Desktop: Carrusel
+                <>
+                  <div className="tumblr-carousel">
+                    <button 
+                      className="carousel-button carousel-button-prev" 
+                      onClick={prevSlide}
+                      aria-label="Post anterior"
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M15 18l-6-6 6-6" />
+                      </svg>
+                    </button>
 
-                return (
-                  <a 
-                    key={post.id}
-                    href={post.post_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="tumblr-post-card"
-                  >
-                    {imageUrl && (
-                      <div className="tumblr-post-image">
-                        <img src={imageUrl} alt={truncatedCaption || 'Post'} loading="lazy" />
+                    <div className="tumblr-carousel-container">
+                      <div 
+                        className="tumblr-carousel-track"
+                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                      >
+                        {/* Slide 1: Posts 0-3 */}
+                        <div className="tumblr-carousel-slide">
+                          <div className="tumblr-posts-grid">
+                            {posts.slice(0, 4).map(renderPostCard)}
+                          </div>
+                        </div>
+
+                        {/* Slide 2: Posts 4-7 */}
+                        <div className="tumblr-carousel-slide">
+                          <div className="tumblr-posts-grid">
+                            {posts.slice(4, 8).map(renderPostCard)}
+                          </div>
+                        </div>
+
+                        {/* Slide 3: Posts 8-11 */}
+                        <div className="tumblr-carousel-slide">
+                          <div className="tumblr-posts-grid">
+                            {posts.slice(8, 12).map(renderPostCard)}
+                          </div>
+                        </div>
+
+                        {/* Slide 4: Posts 12-15 */}
+                        <div className="tumblr-carousel-slide">
+                          <div className="tumblr-posts-grid">
+                            {posts.slice(12, 16).map(renderPostCard)}
+                          </div>
+                        </div>
+
+                        {/* Slide 5: Posts 16-19 */}
+                        <div className="tumblr-carousel-slide">
+                          <div className="tumblr-posts-grid">
+                            {posts.slice(16, 20).map(renderPostCard)}
+                          </div>
+                        </div>
+
+                        {/* Slide 6: Posts 20-23 */}
+                        <div className="tumblr-carousel-slide">
+                          <div className="tumblr-posts-grid">
+                            {posts.slice(20, 24).map(renderPostCard)}
+                          </div>
+                        </div>
                       </div>
-                    )}
-                    {cleanCaption && truncatedCaption.length > 0 && (
-                      <div className="tumblr-post-caption">
-                        <p>{truncatedCaption}{cleanCaption.length > 80 ? '...' : ''}</p>
-                      </div>
-                    )}
-                  </a>
-                );
-              })}
-            </div>
+                    </div>
+
+                    <button 
+                      className="carousel-button carousel-button-next" 
+                      onClick={nextSlide}
+                      aria-label="Siguiente post"
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M9 18l6-6-6-6" />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* Indicadores de puntos */}
+                  <div className="carousel-dots">
+                    {[0, 1, 2, 3, 4, 5].map((index) => (
+                      <button
+                        key={index}
+                        className={`carousel-dot ${currentSlide === index ? 'active' : ''}`}
+                        onClick={() => goToSlide(index)}
+                        aria-label={`Ir al grupo ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </>
+              ) : (
+                // Mobile: Grid simple con botón "Cargar más"
+                <>
+                  <div className="tumblr-posts-grid-mobile">
+                    {posts.slice(0, visiblePostsCount).map(renderPostCard)}
+                  </div>
+                  
+                  {visiblePostsCount < posts.length && (
+                    <div className="load-more-container">
+                      <button 
+                        className="load-more-button"
+                        onClick={loadMorePosts}
+                      >
+                        Cargar mas posts
+                      </button>
+                    </div>
+                  )}
+                </>
+              )}
+            </>
           )}
 
           <div className="tumblr-link">

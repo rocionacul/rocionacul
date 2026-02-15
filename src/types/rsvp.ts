@@ -4,6 +4,7 @@ export interface RSVPFormData {
   phone?: string;
   number_of_guests?: number | null;
   attending?: boolean;
+  comments?: string;
 }
 
 export interface RSVPResponse {

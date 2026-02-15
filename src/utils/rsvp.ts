@@ -12,6 +12,7 @@ export async function submitRSVP(data: RSVPFormData): Promise<RSVPResponse> {
           phone: data.phone,
           number_of_guests: data.number_of_guests,
           attending: data.attending ?? true,
+          comments: data.comments,
         },
       ]);
 

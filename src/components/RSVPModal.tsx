@@ -132,6 +132,18 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
             {errors.number_of_guests && <p className="form-error">{errors.number_of_guests.message}</p>}
           </div>
 
+          <div className="form-group">
+            <label htmlFor="comments" className="form-label">Dejar un comentario</label>
+            <textarea
+              id="comments"
+              {...register('comments')}
+              className="form-textarea"
+              placeholder="Dejanos un mensaje (opcional)"
+              rows={4}
+            />
+            {errors.comments && <p className="form-error">{errors.comments.message}</p>}
+          </div>
+
           {submitStatus.type && (
             <div className={`alert alert-${submitStatus.type}`}>
               {submitStatus.message}

@@ -10,6 +10,7 @@ interface DeclineModalProps {
 
 interface DeclineFormData {
   name: string;
+  comments?: string;
 }
 
 export const DeclineModal: React.FC<DeclineModalProps> = ({ isOpen, onClose }) => {
@@ -34,6 +35,7 @@ export const DeclineModal: React.FC<DeclineModalProps> = ({ isOpen, onClose }) =
       name: data.name,
       number_of_guests: null,
       attending: false,
+      comments: data.comments,
     });
 
     if (response.success) {
@@ -89,6 +91,18 @@ export const DeclineModal: React.FC<DeclineModalProps> = ({ isOpen, onClose }) =
               placeholder="Tu nombre"
             />
             {errors.name && <p className="form-error">{errors.name.message}</p>}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="decline-comments" className="form-label">Dejar un comentario</label>
+            <textarea
+              id="decline-comments"
+              {...register('comments')}
+              className="form-textarea"
+              placeholder="Dejanos un mensaje (opcional)"
+              rows={4}
+            />
+            {errors.comments && <p className="form-error">{errors.comments.message}</p>}
           </div>
 
           {submitStatus.type && (
