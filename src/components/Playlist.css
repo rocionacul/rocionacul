@@ -1,0 +1,210 @@
+.playlist {
+  background-color: var(--bg-primary);
+  padding: 4rem 0;
+}
+
+.playlist-intro {
+  text-align: center;
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.playlist-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.playlist-button {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  min-width: 280px;
+  justify-content: center;
+}
+
+.playlist-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.playlist-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* Spotify Button */
+.playlist-button.spotify {
+  background-color: #1DB954;
+  color: #191414;
+}
+
+.playlist-button.spotify:hover {
+  background-color: #1ed760;
+  border-color: #1DB954;
+}
+
+/* Apple Music Button */
+.playlist-button.apple-music {
+  background: linear-gradient(135deg, #FA243C 0%, #FD5C74 100%);
+  color: #ffffff;
+}
+
+.playlist-button.apple-music:hover {
+  background: linear-gradient(135deg, #FD5C74 0%, #FA243C 100%);
+  border-color: #FA243C;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .playlist {
+    padding: 3rem 0;
+  }
+
+  .playlist-intro {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .playlist-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .playlist-button {
+    min-width: 260px;
+    width: 100%;
+    max-width: 320px;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .playlist-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .tumblr-title {
+    font-size: 1.25rem;
+  }
+
+  .tumblr-posts-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .tumblr-post-image {
+    height: 240px;
+  }
+}
+
+/* Tumblr Section */
+.tumblr-section {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.tumblr-title {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+}
+
+.tumblr-loading,
+.tumblr-error {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+}
+
+.tumblr-error a {
+  color: var(--purple-light);
+  text-decoration: underline;
+}
+
+.tumblr-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+}
+
+.tumblr-post-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.tumblr-post-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--purple-light);
+  box-shadow: 0 8px 24px rgba(168, 85, 247, 0.2);
+}
+
+.tumblr-post-image {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background-color: var(--bg-tertiary);
+}
+
+.tumblr-post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.tumblr-post-card:hover .tumblr-post-image img {
+  transform: scale(1.05);
+}
+
+.tumblr-post-caption {
+  padding: 1rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.tumblr-link {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.tumblr-link a {
+  color: var(--purple-light);
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.tumblr-link a:hover {
+  color: var(--purple);
+  text-decoration: underline;
+}
