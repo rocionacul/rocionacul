@@ -46,7 +46,11 @@ declare global {
   }
 }
 
-export const Playlist: React.FC = () => {
+interface PlaylistProps {
+  embedded?: boolean;
+}
+
+export const Playlist: React.FC<PlaylistProps> = ({ embedded = false }) => {
   const [posts, setPosts] = useState<TumblrPost[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -224,13 +228,13 @@ export const Playlist: React.FC = () => {
     );
   };
 
-  return (
-    <section id="playlist" className="playlist section">
-      <div className="container">
+  const content = (
+    <div className="container">
+      {!embedded && (
         <h2 className="section-title text-gradient-purple">Vibes</h2>
-        
-        <p className="playlist-intro">
-          Escucha la playlist 🎵
+      )}
+      <p className="playlist-intro">
+          Escucha la playlist e inspira tu look 🎵
         </p>
 
         <div className="playlist-buttons">
@@ -391,7 +395,16 @@ export const Playlist: React.FC = () => {
             </a>
           </div>
         </div>
-      </div>
+    </div>
+  );
+
+  if (embedded) {
+    return <div className="playlist playlist--embedded">{content}</div>;
+  }
+
+  return (
+    <section id="playlist" className="playlist section">
+      {content}
     </section>
   );
 };

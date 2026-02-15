@@ -3,7 +3,7 @@ import { Hero } from './components/Hero';
 import { EventInfo } from './components/EventInfo';
 import { RSVPSection } from './components/RSVPSection';
 import { DressCode } from './components/DressCode';
-import { Playlist } from './components/Playlist';
+import { VibesSection } from './components/VibesSection';
 import { GuestList } from './components/GuestList';
 import './App.css';
 
@@ -18,7 +18,7 @@ function App() {
             <EventInfo />
             <RSVPSection />
             <DressCode />
-            <Playlist />
+            <VibesSection />
             
             <footer className="footer">
               <p>Made by hoolab - Do not test this site</p>

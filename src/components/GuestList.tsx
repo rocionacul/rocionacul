@@ -11,6 +11,7 @@ interface Guest {
   attending: boolean;
   attended: boolean;
   created_at: string;
+  comments?: string;
 }
 
 export const GuestList: React.FC = () => {
@@ -209,6 +210,32 @@ export const GuestList: React.FC = () => {
             </div>
           )}
         </>
+      )}
+
+      {/* Sección de comentarios */}
+      {guests.filter(g => g.comments && g.comments.trim()).length > 0 && (
+        <div className="comments-section">
+          <h2 className="section-title comments-title">💬 Comentarios</h2>
+          <div className="comments-grid">
+            {guests
+              .filter(g => g.comments && g.comments.trim())
+              .map((guest) => (
+                <div key={guest.id} className="comment-card">
+                  <div className="comment-content">
+                    <p>"{guest.comments}"</p>
+                  </div>
+                  <div className="comment-author">
+                    <span className="comment-author-name">— {guest.name}</span>
+                    {guest.attending ? (
+                      <span className="comment-status attending">✓ Asiste</span>
+                    ) : (
+                      <span className="comment-status declined">✗ No asiste</span>
+                    )}
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
       )}
 
       <div className="back-link">

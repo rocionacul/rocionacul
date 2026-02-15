@@ -1,0 +1,78 @@
+.vibes-section {
+  background-color: var(--bg-primary);
+  padding: 4rem 0;
+}
+
+.vibes-tabs {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+  margin-top: 1.5rem;
+}
+
+.vibes-tab-button {
+  flex: 1;
+  min-width: 160px;
+  max-width: 280px;
+  padding: 1rem 1.5rem;
+  background-color: var(--bg-secondary);
+  border: 2px solid var(--border-color);
+  border-radius: 1rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.vibes-tab-button:hover {
+  border-color: var(--purple-light);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(168, 85, 247, 0.2);
+}
+
+.vibes-tab-button.active {
+  background-color: var(--purple);
+  border-color: var(--purple-light);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
+}
+
+.vibes-tab-content {
+  min-height: 200px;
+}
+
+/* Embedded variants: no extra padding, content flows under same section */
+.vibes-section .playlist--embedded,
+.vibes-section .vibes-party--embedded {
+  margin-top: 0;
+}
+
+.vibes-section .playlist--embedded .container,
+.vibes-section .vibes-party--embedded .container {
+  padding-top: 0;
+}
+
+@media (max-width: 768px) {
+  .vibes-section {
+    padding: 3rem 0;
+  }
+
+  .vibes-tabs {
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .vibes-tab-button {
+    min-width: 0;
+    width: 100%;
+    max-width: none;
+    padding: 0.875rem 1rem;
+    font-size: 0.9375rem;
+  }
+}

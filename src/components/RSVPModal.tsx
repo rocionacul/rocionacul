@@ -79,7 +79,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
               type="text"
               {...register('name', { required: 'El nombre es requerido' })}
               className="form-input"
-              placeholder="Tu nombre"
+              placeholder="Nombre y Apellido"
             />
             {errors.name && <p className="form-error">{errors.name.message}</p>}
           </div>
