@@ -1,0 +1,40 @@
+.decline-modal {
+  max-width: 24rem;
+}
+
+.decline-modal .modal-title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.decline-modal .modal-subtitle {
+  color: var(--text-tertiary);
+  margin-bottom: 1.5rem;
+}
+
+.btn-decline-submit {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.875rem;
+  background: none;
+  border: 2px solid var(--text-tertiary);
+  border-radius: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-decline-submit:hover {
+  border-color: var(--text-secondary);
+  color: var(--text-primary);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-decline-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

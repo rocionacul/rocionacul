@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './DressCode.css';
 import emoVideo from '../assets/emo-video.mp4';
 import twilightVideo from '../assets/twilight-video.mp4';
 
 export const DressCode: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<'emo' | 'twilight'>('emo');
+
   return (
     <section className="dress-code section">
       <div className="container">
@@ -13,11 +15,27 @@ export const DressCode: React.FC = () => {
           ¡Elegí tu estética para la tarde!
         </p>
 
+        {/* Tabs - Solo visible en mobile */}
+        <div className="dress-code-tabs">
+          <button
+            className={`tab-button ${activeTab === 'emo' ? 'active' : ''}`}
+            onClick={() => setActiveTab('emo')}
+          >
+            🖤 Emo
+          </button>
+          <button
+            className={`tab-button ${activeTab === 'twilight' ? 'active' : ''}`}
+            onClick={() => setActiveTab('twilight')}
+          >
+            🌙 Twilight
+          </button>
+        </div>
+
         <div className="dress-code-grid">
           {/* Columna 1: Videos */}
           <div className="video-column">
             {/* Video Emo */}
-            <div className="dress-code-video card">
+            <div className={`dress-code-video card ${activeTab === 'emo' ? 'active' : ''}`}>
               <video
                 className="video-player"
                 controls
@@ -30,7 +48,7 @@ export const DressCode: React.FC = () => {
             </div>
 
             {/* Video Twilight */}
-            <div className="dress-code-video card">
+            <div className={`dress-code-video card ${activeTab === 'twilight' ? 'active' : ''}`}>
               <video
                 className="video-player"
                 controls
@@ -46,7 +64,7 @@ export const DressCode: React.FC = () => {
           {/* Columna 2: Tarjetas */}
           <div className="cards-column">
             {/* Tarjeta Emo */}
-            <div className="dress-code-card card">
+            <div className={`dress-code-card card ${activeTab === 'emo' ? 'active' : ''}`}>
               <div className="dress-code-icon">🖤</div>
               
               <h3 className="dress-code-title">Emo</h3>
@@ -64,7 +82,7 @@ export const DressCode: React.FC = () => {
             </div>
 
             {/* Tarjeta Twilight */}
-            <div className="dress-code-card card">
+            <div className={`dress-code-card card ${activeTab === 'twilight' ? 'active' : ''}`}>
               <div className="dress-code-icon">🌙</div>
               
               <h3 className="dress-code-title">Twilight</h3>

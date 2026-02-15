@@ -75,6 +75,16 @@
   font-weight: 300;
 }
 
+.hero-subtitle-alt {
+  display: block;
+  font-size: 1rem;
+  color: var(--text-tertiary);
+  font-style: italic;
+  font-weight: 300;
+  margin-top: 0.5rem;
+  opacity: 0.8;
+}
+
 .hero-tagline {
   font-size: 1.25rem;
   color: var(--purple-light);
@@ -129,6 +139,10 @@
   
   .hero-subtitle {
     font-size: 1.5rem;
+  }
+  
+  .hero-subtitle-alt {
+    font-size: 0.875rem;
   }
   
   .hero-tagline {

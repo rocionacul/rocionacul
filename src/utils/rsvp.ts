@@ -11,6 +11,7 @@ export async function submitRSVP(data: RSVPFormData): Promise<RSVPResponse> {
           email: data.email,
           phone: data.phone,
           number_of_guests: data.number_of_guests,
+          attending: data.attending ?? true,
         },
       ]);
 
@@ -24,7 +25,9 @@ export async function submitRSVP(data: RSVPFormData): Promise<RSVPResponse> {
 
     return {
       success: true,
-      message: '¡Confirmación enviada! Nos vemos en la fiesta! 🎉',
+      message: data.attending === false 
+        ? '¡Gracias por avisar! Te vamos a extrañar 😢' 
+        : '¡Confirmación enviada! Nos vemos en la fiesta! 🎉',
     };
   } catch (err) {
     console.error('Error submitting RSVP:', err);

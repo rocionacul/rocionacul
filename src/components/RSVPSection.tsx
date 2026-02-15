@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { RSVPModal } from './RSVPModal';
+import { DeclineModal } from './DeclineModal';
 import './RSVPSection.css';
 
 export const RSVPSection: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isRSVPModalOpen, setIsRSVPModalOpen] = useState(false);
+  const [isDeclineModalOpen, setIsDeclineModalOpen] = useState(false);
 
   return (
     <>
@@ -15,15 +17,22 @@ export const RSVPSection: React.FC = () => {
             Confirmá tu asistencia para que te guarde un lugar.
           </p>
 
-          <button onClick={() => setIsModalOpen(true)} className="btn-primary">
-            Confirmar Asistencia
-          </button>
+          <div className="rsvp-buttons">
+            <button onClick={() => setIsRSVPModalOpen(true)} className="btn-primary">
+              Confirmar Asistencia
+            </button>
+
+            <button onClick={() => setIsDeclineModalOpen(true)} className="btn-decline-rsvp">
+              No puedo ir
+            </button>
+          </div>
 
           <p className="rsvp-hint">Hacé click para confirmar</p>
         </div>
       </section>
 
-      <RSVPModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <RSVPModal isOpen={isRSVPModalOpen} onClose={() => setIsRSVPModalOpen(false)} />
+      <DeclineModal isOpen={isDeclineModalOpen} onClose={() => setIsDeclineModalOpen(false)} />
     </>
   );
 };

@@ -22,10 +22,13 @@ export const Hero: React.FC = () => {
 
         <h1 className="hero-title animate-slide-up">
           <span className="text-gradient-purple">¡Estás Invitada!</span>
+          <span className="hero-subtitle-alt">o invitado, en su defecto</span>
+
         </h1>
         
+        
         <p className="hero-subtitle">
-         Vení a celebrar mi cumpleaños ✨
+          Vení a celebrar mis 30 ✨
         </p>
 
         <p className="hero-rsvp-notice">
