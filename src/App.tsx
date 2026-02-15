@@ -21,7 +21,7 @@ function App() {
             <Playlist />
             
             <footer className="footer">
-              <p>Made by hoolab - Do not QA this site</p>
+              <p>Made by hoolab - Do not test this site</p>
             </footer>
           </div>
         } />

@@ -14,6 +14,24 @@ interface TumblrPost {
   body?: string;
   caption?: string;
   title?: string;
+  is_blocks_post_format?: boolean;
+  content?: Array<{
+    type: string;
+    media?: Array<{
+      type: string;
+      url?: string;
+    }>;
+  }>;
+  trail?: Array<{
+    content?: Array<{
+      type: string;
+      media?: Array<{
+        type: string;
+        url?: string;
+      }>;
+    }> | string;
+    content_raw?: string;
+  }>;
 }
 
 interface TumblrResponse {
@@ -33,6 +51,62 @@ export const Playlist: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  // Función para extraer URL de imagen del HTML
+  const extractImageFromHTML = (html: string): string | null => {
+    if (!html) return null;
+    const imgMatch = html.match(/<img[^>]+src="([^">]+)"/);
+    return imgMatch ? imgMatch[1] : null;
+  };
+
+  // Función para extraer la URL de imagen de un post (formato antiguo o nuevo)
+  const getPostImageUrl = (post: TumblrPost): string | null => {
+    // Formato antiguo: posts de tipo 'photo' con campo photos
+    if (post.photos && post.photos.length > 0) {
+      return post.photos[0].original_size.url;
+    }
+
+    // Formato nuevo: posts con bloques (is_blocks_post_format: true)
+    if (post.is_blocks_post_format && post.content) {
+      for (const block of post.content) {
+        if (block.type === 'image' && block.media && block.media.length > 0) {
+          return block.media[0].url || null;
+        }
+      }
+    }
+
+    // Formato de reblog trail (posts reblogueados con HTML)
+    if (post.trail && post.trail.length > 0) {
+      for (const trailItem of post.trail) {
+        // Intentar extraer de content como HTML
+        if (typeof trailItem.content === 'string') {
+          const imgUrl = extractImageFromHTML(trailItem.content);
+          if (imgUrl) return imgUrl;
+        }
+        // Intentar con content_raw
+        if (trailItem.content_raw) {
+          const imgUrl = extractImageFromHTML(trailItem.content_raw);
+          if (imgUrl) return imgUrl;
+        }
+        // Formato estructurado de bloques en trail
+        if (Array.isArray(trailItem.content)) {
+          for (const block of trailItem.content) {
+            if (block.type === 'image' && block.media && block.media.length > 0) {
+              return block.media[0].url || null;
+            }
+          }
+        }
+      }
+    }
+
+    // Último recurso: buscar en el body HTML
+    if (post.body) {
+      const imgUrl = extractImageFromHTML(post.body);
+      if (imgUrl) return imgUrl;
+    }
+
+    return null;
+  };
+
   useEffect(() => {
     const fetchTumblrPosts = async () => {
       const apiKey = import.meta.env.VITE_TUMBLR_API_KEY;
@@ -50,11 +124,18 @@ export const Playlist: React.FC = () => {
         
         // Crear el script tag para JSONP
         const script = document.createElement('script');
-        script.src = `https://api.tumblr.com/v2/blog/rocionacul.tumblr.com/posts?api_key=${apiKey}&limit=6&callback=${callbackName}`;
+        script.src = `https://api.tumblr.com/v2/blog/rocionacul.tumblr.com/posts?api_key=${apiKey}&limit=20&callback=${callbackName}`;
         
         // Crear el callback global
         window[callbackName] = (data: TumblrResponse) => {
-          setPosts(data.response.posts || []);
+          const allPosts = data.response.posts || [];
+          
+          // Filtrar posts que tienen imágenes usando la función helper
+          const postsWithImages = allPosts.filter(post => {
+            return !!getPostImageUrl(post);
+          });
+
+          setPosts(postsWithImages.slice(0, 6));
           setLoading(false);
           document.body.removeChild(script);
           delete window[callbackName];
@@ -134,9 +215,10 @@ export const Playlist: React.FC = () => {
           {!loading && !error && posts.length > 0 && (
             <div className="tumblr-posts-grid">
               {posts.map((post) => {
-                const imageUrl = post.photos?.[0]?.original_size?.url;
+                const imageUrl = getPostImageUrl(post);
                 const caption = post.caption || post.summary || post.body || '';
-                const truncatedCaption = caption.replace(/<[^>]*>/g, '').substring(0, 100);
+                const cleanCaption = caption.replace(/<[^>]*>/g, '').trim();
+                const truncatedCaption = cleanCaption.substring(0, 80);
 
                 return (
                   <a 
@@ -148,12 +230,12 @@ export const Playlist: React.FC = () => {
                   >
                     {imageUrl && (
                       <div className="tumblr-post-image">
-                        <img src={imageUrl} alt="Post" loading="lazy" />
+                        <img src={imageUrl} alt={truncatedCaption || 'Post'} loading="lazy" />
                       </div>
                     )}
-                    {truncatedCaption && (
+                    {cleanCaption && truncatedCaption.length > 0 && (
                       <div className="tumblr-post-caption">
-                        <p>{truncatedCaption}...</p>
+                        <p>{truncatedCaption}{cleanCaption.length > 80 ? '...' : ''}</p>
                       </div>
                     )}
                   </a>
