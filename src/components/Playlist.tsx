@@ -164,10 +164,10 @@ export const Playlist: React.FC = () => {
   return (
     <section id="playlist" className="playlist section">
       <div className="container">
-        <h2 className="section-title text-gradient-purple">Mas Inspo</h2>
+        <h2 className="section-title text-gradient-purple">Vibes</h2>
         
         <p className="playlist-intro">
-          Escucha la playlist del evento 🎵
+          Escucha la playlist 🎵
         </p>
 
         <div className="playlist-buttons">
@@ -198,7 +198,7 @@ export const Playlist: React.FC = () => {
         </div>
 
         <div className="tumblr-section">
-          <h3 className="tumblr-title">Mas vibes del evento</h3>
+          <h3 className="tumblr-title">Inspo para el look</h3>
           
           {loading && (
             <div className="tumblr-loading">

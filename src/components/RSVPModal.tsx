@@ -73,7 +73,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label htmlFor="name" className="form-label">Nombre *</label>
+            <label htmlFor="name" className="form-label">Nombre y Apellido*</label>
             <input
               id="name"
               type="text"

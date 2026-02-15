@@ -80,7 +80,7 @@ export const DeclineModal: React.FC<DeclineModalProps> = ({ isOpen, onClose }) =
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label htmlFor="decline-name" className="form-label">Tu nombre *</label>
+            <label htmlFor="decline-name" className="form-label">Nombre y Apellido *</label>
             <input
               id="decline-name"
               type="text"
