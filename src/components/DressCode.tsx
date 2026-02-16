@@ -3,6 +3,10 @@ import './DressCode.css';
 import emoVideo from '../assets/emo-video.mp4';
 import twilightVideo from '../assets/twilight-video.mp4';
 
+// Miniaturas: poné emo-video-poster.jpg y twilight-video-poster.jpg en la carpeta public/
+const emoPoster = '/emo-video-poster.jpg';
+const twilightPoster = '/twilight-video-poster.jpg';
+
 export const DressCode: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'emo' | 'twilight'>('emo');
 
@@ -46,6 +50,7 @@ export const DressCode: React.FC = () => {
                 controls
                 playsInline
                 preload="metadata"
+                poster={emoPoster}
               >
                 <source src={emoVideo} type="video/mp4" />
                 Tu navegador no soporta video HTML5.
@@ -59,6 +64,7 @@ export const DressCode: React.FC = () => {
                 controls
                 playsInline
                 preload="metadata"
+                poster={twilightPoster}
               >
                 <source src={twilightVideo} type="video/mp4" />
                 Tu navegador no soporta video HTML5.
