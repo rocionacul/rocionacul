@@ -4,6 +4,8 @@ import { submitRSVP } from '../utils/rsvp';
 import type { RSVPFormData } from '../types/rsvp';
 import './RSVPModal.css';
 
+const GOOGLE_CALENDAR_EVENT_URL = 'https://calendar.app.google/RwnVtD66VSi7enhx7';
+
 interface RSVPModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -35,10 +37,6 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
         message: response.message || 'RSVP submitted successfully!',
       });
       reset();
-      setTimeout(() => {
-        onClose();
-        setSubmitStatus({ type: null, message: '' });
-      }, 2000);
     } else {
       setSubmitStatus({
         type: 'error',
@@ -71,6 +69,25 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
         <h2 className="modal-title text-gradient-purple">Confirmacion</h2>
         <p className="modal-subtitle">Gracias por venir!</p>
 
+        {submitStatus.type === 'success' ? (
+          <div className="rsvp-success-view">
+            <div className={`alert alert-${submitStatus.type}`}>
+              {submitStatus.message}
+            </div>
+            <a
+              href={GOOGLE_CALENDAR_EVENT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-add-calendar"
+            >
+              Añadir al calendario de Google
+            </a>
+            <p className="rsvp-success-hint">Abre el enlace para guardar el evento en tu calendario.</p>
+            <button type="button" onClick={handleClose} className="btn-primary" style={{ width: '100%', marginTop: '0.5rem' }}>
+              Cerrar
+            </button>
+          </div>
+        ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
             <label htmlFor="name" className="form-label">Nombre y Apellido*</label>
@@ -144,7 +161,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
             {errors.comments && <p className="form-error">{errors.comments.message}</p>}
           </div>
 
-          {submitStatus.type && (
+          {submitStatus.type === 'error' && (
             <div className={`alert alert-${submitStatus.type}`}>
               {submitStatus.message}
             </div>
@@ -161,6 +178,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
             )}
           </button>
         </form>
+        )}
       </div>
     </div>
   );

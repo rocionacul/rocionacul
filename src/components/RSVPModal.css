@@ -8,3 +8,34 @@
   color: var(--text-tertiary);
   margin-bottom: 1.5rem;
 }
+
+.rsvp-success-view {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.btn-add-calendar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--purple);
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn-add-calendar:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.rsvp-success-hint {
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+  margin: 0;
+}

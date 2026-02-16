@@ -50,24 +50,24 @@
 
 /* Spotify Button */
 .playlist-button.spotify {
-  background-color: #1DB954;
+  background-color: #1db954;
   color: #191414;
 }
 
 .playlist-button.spotify:hover {
   background-color: #1ed760;
-  border-color: #1DB954;
+  border-color: #1db954;
 }
 
 /* Apple Music Button */
 .playlist-button.apple-music {
-  background: linear-gradient(135deg, #FA243C 0%, #FD5C74 100%);
+  background: linear-gradient(135deg, #fa243c 0%, #fd5c74 100%);
   color: #ffffff;
 }
 
 .playlist-button.apple-music:hover {
-  background: linear-gradient(135deg, #FD5C74 0%, #FA243C 100%);
-  border-color: #FA243C;
+  background: linear-gradient(135deg, #fd5c74 0%, #fa243c 100%);
+  border-color: #fa243c;
 }
 
 /* Responsive */
@@ -274,11 +274,11 @@
   .tumblr-section .tumblr-post-card {
     min-width: 0 !important;
   }
-  
+
   .tumblr-section .tumblr-post-image {
     height: 160px !important;
   }
-  
+
   .tumblr-section .tumblr-post-caption {
     padding: 0.75rem !important;
     font-size: 0.75rem !important;
@@ -354,7 +354,11 @@
 .tumblr-post-no-image {
   width: 100%;
   height: 280px;
-  background: linear-gradient(135deg, var(--purple-dark) 0%, var(--purple-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--purple-dark) 0%,
+    var(--purple-light) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;
