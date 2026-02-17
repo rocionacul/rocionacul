@@ -21,7 +21,7 @@ export const DressCode: React.FC = () => {
         <h2 className="section-title text-gradient-purple">Dress Code</h2>
         
         <p className="dress-code-intro">
-          ¡Elegí tu estética para la tarde!
+          ¡Elegi tu estetica para la tarde!
         </p>
 
         {/* Tabs - Solo visible en mobile */}
@@ -113,7 +113,7 @@ export const DressCode: React.FC = () => {
         </div>
 
         <div className="dress-code-footer">
-          <p>¿No te decidís? Vestite con algo que me guste o represente✨</p>
+          <p>¿No te decidis? Vestite con algo que me guste o represente✨</p>
         </div>
 
         <button onClick={scrollToPlaylist} className="dress-code-scroll animate-bounce" aria-label="Ver mas inspiracion">

@@ -106,7 +106,7 @@ export const VibesParty: React.FC<VibesPartyProps> = ({ embedded = false }) => {
         <h2 className="section-title text-gradient-purple">Vibes de la Fiesta</h2>
       )}
       <p className="vibes-party-intro">
-        La banda sonora de mi cumpleaños
+        La banda sonora de mi cumple
       </p>
 
       {loading && (
@@ -175,7 +175,7 @@ export const VibesParty: React.FC<VibesPartyProps> = ({ embedded = false }) => {
               {visibleCount < videos.length && (
                 <div className="youtube-load-more">
                   <button type="button" className="load-more-button" onClick={loadMore}>
-                    Cargar más videos
+                    Cargar mas videos
                   </button>
                 </div>
               )}

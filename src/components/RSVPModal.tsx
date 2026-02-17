@@ -155,7 +155,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
               id="comments"
               {...register('comments')}
               className="form-textarea"
-              placeholder="Dejanos un mensaje (opcional)"
+              placeholder="Deja un mensaje, contame con quien venis (opcional)"
               rows={4}
             />
             {errors.comments && <p className="form-error">{errors.comments.message}</p>}

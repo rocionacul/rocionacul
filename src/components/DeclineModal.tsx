@@ -78,7 +78,7 @@ export const DeclineModal: React.FC<DeclineModalProps> = ({ isOpen, onClose }) =
         </button>
 
         <h2 className="modal-title">No puedo ir 😢</h2>
-        <p className="modal-subtitle">Te vamos a extrañar, pero gracias por avisar!</p>
+        <p className="modal-subtitle">Te extrañaremos, pero gracias por avisar!</p>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">

@@ -234,7 +234,7 @@ export const Playlist: React.FC<PlaylistProps> = ({ embedded = false }) => {
         <h2 className="section-title text-gradient-purple">Vibes</h2>
       )}
       <p className="playlist-intro">
-          Escucha la playlist e inspira tu look 🎵
+          Escucha la playlist para inspirar tu look 🎵
         </p>
 
         <div className="playlist-buttons">
