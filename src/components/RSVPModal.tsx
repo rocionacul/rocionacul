@@ -82,7 +82,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
             >
               Añadir al calendario de Google
             </a>
-            <p className="rsvp-success-hint">Abre el enlace para guardar el evento en tu calendario.</p>
+            <p className="rsvp-success-hint">Abri el enlace para guardar el evento en tu calendario.</p>
             <button type="button" onClick={handleClose} className="btn-primary" style={{ width: '100%', marginTop: '0.5rem' }}>
               Cerrar
             </button>
@@ -102,7 +102,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email" className="form-label">Email</label>
+            <label htmlFor="email" className="form-label">Email (opcional)</label>
             <input
               id="email"
               type="email"
@@ -119,7 +119,7 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="phone" className="form-label">Telefono</label>
+            <label htmlFor="phone" className="form-label">Telefono (opcional)</label>
             <input
               id="phone"
               type="tel"
@@ -150,12 +150,12 @@ export const RSVPModal: React.FC<RSVPModalProps> = ({ isOpen, onClose }) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="comments" className="form-label">Dejar un comentario</label>
+            <label htmlFor="comments" className="form-label">Dejar un comentario (opcional)</label>
             <textarea
               id="comments"
               {...register('comments')}
               className="form-textarea"
-              placeholder="Deja un mensaje, contame con quien venis (opcional)"
+              placeholder="Deja un mensaje, contame con quien venis"
               rows={4}
             />
             {errors.comments && <p className="form-error">{errors.comments.message}</p>}
