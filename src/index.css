@@ -16,6 +16,12 @@
   --purple-dark: #7e22ce;
   --border-color: rgba(168, 85, 247, 0.2);
   --border-hover: rgba(168, 85, 247, 0.4);
+
+  /* Tipografía: cuerpo genérico, títulos Twilight */
+  --font-body:
+    system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Twilight", serif;
 }
 
 html {
@@ -23,16 +29,7 @@ html {
 }
 
 body {
-  font-family:
-    "Twilight",
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    sans-serif;
+  font-family: var(--font-body);
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
@@ -43,7 +40,12 @@ body {
   letter-spacing: 0.02em;
 }
 
-/* Typography - Twilight font for all titles */
+/* Clase para forzar fuente genérica donde la necesites (p. ej. dentro de un bloque con título) */
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Typography - Twilight solo en títulos y detalles */
 h1,
 h2,
 h3,
@@ -54,8 +56,8 @@ h6,
 .hero-title,
 .dress-code-title,
 .tumblr-title,
-.modal-title {
-  font-family: "Twilight", serif;
+.modal-title .hero-subtitle {
+  font-family: var(--font-display);
   font-weight: 300;
   letter-spacing: 0.05em;
   -webkit-font-smoothing: antialiased;
