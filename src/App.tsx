@@ -21,7 +21,7 @@ function App() {
             <VibesSection />
             
             <footer className="footer">
-              <p>Made by hoolab - Do not test this site</p>
+              <p>Made by hoolab | Ro Nacul - Do not test this site</p>
             </footer>
           </div>
         } />
