@@ -15,7 +15,7 @@ export const EventInfo: React.FC = () => {
               </svg>
               <h3 className="event-card-title">Cuando</h3>
               <p className="event-card-text">Sabado 21 de Marzo</p>
-              <p className="event-card-subtext">18:00 - 21:00 hs</p>
+              <p className="event-card-subtext">17:00 - 20:00 hs</p>
             </div>
           </div>
 
